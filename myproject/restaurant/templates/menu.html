@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1>Menu</h1>
+  <!-- Begin container -->
+  <div class="container">
+    <!-- Begin row -->
+    <div class="row">
+      <!-- Step 14: Create a for loop to iterate over menu items -->
+      {% for item in menu.menu %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <!-- Force a fixed size for the images -->
+            <img src="/restaurant/static/img/menu_items/{{item.name}}.jpg" class="card-img-top fixed-image-size" alt="{{item.name}}" />
+          <div class="card-body">
+              <h5  class="card-title"><a href="{% url 'menu_item' item.name %}">{{ item.name }}</a></h5>
+            
+            <p class="card-price">${{ item.price }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- Step 14: End the loop -->
+    </div>
+    <!-- End row -->
+  </div>
+  <!-- End container -->
+
+
+  <!-- Add CSS styles to enforce the fixed image size -->
+  <style>
+    .fixed-image-size {
+      width: 200px; /* Set your desired width */
+      height: 150px; /* Set your desired height */
+      object-fit: cover; /* Adjust the image behavior (e.g., cover, contain) */
+    }
+  </style>
+{% endblock %}
